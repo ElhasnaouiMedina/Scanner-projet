@@ -18,6 +18,7 @@ void setup() {
 }
 
 void loop(){
+  int t1 = millis();
   VL53L0X_RangingMeasurementData_t measure;
    
   Serial.print("Reading a measurement... ");
@@ -25,10 +26,12 @@ void loop(){
 
   if (measure.RangeStatus != 4) {  // phase failures have incorrect data
     Serial.print("Distance (mm): ");
-  Serial.println(measure.RangeMilliMeter);}
+    Serial.println(measure.RangeMilliMeter);}
   else {
    Serial.println(" out of range ");
   }
-   
+  int t2 = millis();
+  Serial.print("Time (ms): ");
+  Serial.println(t2-t1);
   delay(100);
 }
